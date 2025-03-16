@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .chat-container {
+            width: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-box {
+            height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            max-width: 75%;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 10px;
+            word-wrap: break-word;
+        }
+        .user {
+            background-color: #007bff;
+            color: white;
+            align-self: flex-end;
+        }
+        .server {
+            background-color: #e0e0e0;
+            color: black;
+            align-self: flex-start;
+        }
+        .input-container {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+        button {
+            padding: 10px;
+            margin-left: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox"></div>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Ask about Pokémon...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+     
+        async function sendMessage() {
+            let inputField = document.getElementById("userInput");
+            let chatBox = document.getElementById("chatBox");
+            let userText = inputField.value.trim();
+            if (!userText) return;
+
+            // Display user message
+            let userMessage = document.createElement("div");
+            userMessage.className = "message user";
+            userMessage.innerText = userText;
+            chatBox.appendChild(userMessage);
+            inputField.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Send request to backend
+            try {
+                let response = await fetch(`http://127.0.0.1:8000/search/?query=${encodeURIComponent(userText)}`, {
+                    method: "GET",  // ✅ Ensure this is GET
+                    headers: { "Accept": "application/json" }  // ✅ Remove "Content-Type" (not needed for GET)
+                });
+
+                let result = await response.json();
+
+                // Display server response
+                let serverMessage = document.createElement("div");
+                serverMessage.className = "message server";
+                serverMessage.innerText = result.results;  // ✅ Fix property name
+                chatBox.appendChild(serverMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            } catch (error) {
+                console.error("Error:", error);
+        }
+    }
+
+    </script>
+</body>
+</html>

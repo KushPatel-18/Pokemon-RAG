@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pinecone-client
+pandas
+python-dotenv
+transformers
+torch
+together
+tqdm
+requests
