@@ -5,11 +5,11 @@ This project is a **Retrieval-Augmented Generation (RAG) system** that allows us
 ---
 
 ## **📌 Features**
-- ✅ Fetches Pokémon data from **PokeAPI** and stores it in a CSV file.
-- ✅ Embeds Pokémon data into **Pinecone** for vector search.
-- ✅ Uses an **LLM (Llama-3-70B)** to enhance responses.
-- ✅ Provides a **FastAPI server** for queries.
-- ✅ Includes a **chat-style frontend** for easy interaction.
+- Fetches Pokémon data from **PokeAPI** and stores it in a CSV file.
+- Embeds Pokémon data into **Pinecone** for vector search.
+- Uses an **LLM (Llama-3-70B)** to enhance responses.
+- Provides a **FastAPI server** for queries.
+- Includes a **chat-style frontend** for easy interaction.
 
 ---
 
@@ -143,7 +143,7 @@ fetch(`http://127.0.0.1:8000/search/?query=${encodeURIComponent(userText)}`)
 
 Your API will be available at:
 ```
-https://your-app-name.onrender.com/search/?query=Charizard
+https://{your-app-name}.onrender.com/search/?query=Charizard
 ```
 
 ### **2️⃣ Fly.io (More Control)**
@@ -173,11 +173,3 @@ pinecone.create_index(name, spec=ServerlessSpec(cloud="aws", region="us-east-1")
 
 **❌ Frontend Not Connecting?**  
 ✅ Make sure `web.html` is pointing to the correct backend URL.
-
----
-
-## **📜 License**
-MIT License. Free to use & modify.
-
-🚀 Enjoy your Pokémon-powered AI search! 🎉
-
