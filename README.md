@@ -97,6 +97,9 @@ Expected JSON response:
 }
 ```
 
+#### Example backend server screenshot 
+![Example-Backend-Screenshot](./Images/Back-End-Example-Screenshot.png)
+
 ---
 
 ## **💻 7️⃣ Run the Web Interface**
@@ -111,7 +114,11 @@ fetch(`http://127.0.0.1:8000/search/?query=${encodeURIComponent(userText)}`)
 
 3. **Ask a question!** The chatbot will return Pokémon-related responses.
 
+#### Example frontend screenshot 
+![Example-Frontend-Screenshot](./Images/Example-Screenshot.png)
+
 ---
+
 
 ## **🎯 Summary of Commands**
 | **Step** | **Command** |
